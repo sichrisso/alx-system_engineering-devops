@@ -1,4 +1,4 @@
 #!/bin/bash
-chown -hR betty:school .
+chown -hR betty:staff .
 
 
