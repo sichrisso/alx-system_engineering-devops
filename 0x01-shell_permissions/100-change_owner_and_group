@@ -1,4 +1,4 @@
 #!/bin/bash
-chown -hR betty:staff .
+chown -hR vincent:staff .
 
 
