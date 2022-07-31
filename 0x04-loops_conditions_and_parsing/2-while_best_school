@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-# This script is displaying "Best School" 10 times
-counter=0
-while [ $counter -lt 10 ]; do
-      echo "Best School"
-      let counter=counter+1
+# bash while loop
+
+x=0
+
+while [ $x -lt 10 ]
+do
+  echo "Best School"
+  (( x++ ))
 done
