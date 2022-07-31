@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Infinite loop creates file with pid
+
+rmfile_n_exit()
+{
+    rm -f /var/run/myscript.pid;
+    exit
+}
+trap "echo 'Y U no love me?!'" SIGINT
+trap "echo 'I hate the kill command'; rmfile_n_exit" SIGTERM
+trap "echo 'I hate the kill command'; rmfile_n_exit" SIGQUIT
+
+echo $$ >> /var/run/myscript.pid
+while (true)
+do
+    echo 'To infinity and beyond'
+    sleep 2
+done
