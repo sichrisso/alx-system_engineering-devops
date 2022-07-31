@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# AUTHOR: SEBLEWONGEL
+# Runs `shellcheck` on all bash script in the project directory
+
+BASH_SCRIPT_CHECKER=shellcheck
+
+if ! command -v $BASH_SCRIPT_CHECKER &> /dev/null
+then
+	echo "shellcheck not found! Installing shellcheck..."
+	if ! sudo apt install shellcheck &> /dev/null
+	then
+		echo "shellcheck couldn't be installed"
+		exit 1
+	fi
+fi
+
+FILES=$(ls)
+
+for FILE in $FILES
+do
+	if [[ -x "$FILE" && $(head -1 "$FILE" | wc -c) == 20 ]]
+	then
+		echo "Running shellcheck on $FILE..."
+		shellcheck "$FILE"
+	fi
+done
