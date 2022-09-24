@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-# install nginx
-# listening on port 80
-# returns a page containing string when sent a GET request at root
-apt-get -y update
-apt-get -y install nginx
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
-service nginx start
