@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Install and configure HAproxy on my lb-01 server.
+apt-get -y install haproxy
+
+# edit config file
+server_config=\
+"
+frontend  elmahdi-alx-frontend
+        bind *:80
+        mode http
+        default_backend elmahdi-alx-backend
+
+backend elmahdi-alx-backend
+        balance roundrobin
+        server 335-web-01 34.75.211.145:80 check
+        server 335-web-02 3.236.217.0:80 check
+"
+ echo "$server_config" >> /etc/haproxy/haproxy.cfg
+
+ # enable haproxy to be started by init script
+
+ echo "ENABLED=1" >> /etc/default/haproxy
+
+ sudo service haproxy restart
