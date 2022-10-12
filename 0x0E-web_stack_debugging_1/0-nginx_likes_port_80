@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
-#Fixing a bug: changing from port 8080 to 80 
-sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
-service nginx restart
+# fix server, it's not listening in port 80
+# after checking the config i found that it's listening in port 8080
+# so this script will change it 
+sudo sed -i 's/listen 8080 default_server;.*/listen 80 default_server;/' /etc/nginx/sites-enabled/default 
+sudo sed -i 's/listen \[::\]:8080 default_server ipv6only=on;.*/listen \[::\]:80 default_server;/' /etc/nginx/sites-enabled/default 
+sudo service nginx restart
